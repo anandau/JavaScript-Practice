@@ -1,0 +1,58 @@
+<script>
+    const person = [
+        {
+        name: 'srk',
+        age: 23,
+        },
+        {
+            name: 'salman',
+            age: 23,
+        },
+        {
+            name: 'ritik',
+            age: 23,
+        },
+        {
+            name: 'anil',
+            age: 23,
+        },
+    ];
+
+    function call(){
+        person.forEach((per,index) =>{
+            console.group(`${per.name}`);
+            console.log(per.age);
+            console.groupEnd(`${per.name}`);
+        })
+    }
+
+    console.log(person);
+    //1.
+    console.log('debug');
+    //2.
+    console.info('debugging');
+    //3. error not the actual error it changes the console color into red.
+    if(person[0].name === 'srk'){
+        console.error("bad name");
+    }
+    //4. create table if having same object data.
+    console.table(person);
+    //5. can be used onto function to determine how many times it is called.
+    console.count("counting -> ")
+    //6. if having a lot of consoles.
+    console.group("work to do");
+    console.error("error");
+    console.warn("warn");
+    console.log('log');
+    console.groupEnd('work to do');
+    call();
+
+    // 7. select any element from the element tab in inspect and tyep $0 in console to check which element has been selected.
+
+    //8 breakpoint -> pause js from running.
+    person.forEach((per,index) =>{
+        //debugger;
+        console.log(per.name);
+    })
+
+</script>

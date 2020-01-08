@@ -1,0 +1,15 @@
+<html>
+    <body>
+        <p>
+            hello
+        </p>
+    </body>
+
+    <script>
+        const p = document.querySelector('p');
+        // adding after text in the p. method 1.
+        //p.textContent = `${p.textContent} srk`;
+        // adding after text in the p. method 2.
+        p.insertAdjacentText("beforeend", 'how are you');
+    </script>
+</html>

@@ -1,0 +1,17 @@
+<html>
+<body>
+    <img src="18-CONTACTUS-HEADER.jpg" width="100" height="100">
+</body>
+
+<script>
+    const img = document.querySelector('img');
+
+    // this will always be equal to left side of the dot "." in this case this will equal to img.
+    // the this keyword only words when using function keyword it will not work in arrow fun.
+    // do not use this keyword in event listener use current target.
+    img.addEventListener('mouseenter', function (e) {
+        console.log(e.currentTarget);
+        console.log(this)
+    });
+</script>
+</html>

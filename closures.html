@@ -1,0 +1,64 @@
+<script>
+    // closures is the ability to access the parent level scope from a child level scope even if parent is terminated.
+
+    function outer() {
+        const outerVar = "hey i am outer";
+        //1
+        function inner() {
+            const innterVar = "hey i am inner";
+            console.log(outerVar);
+            console.log(innterVar);
+        }
+        //1
+        //inner();
+        // now what if i dont want to call inner function inside the outer function and call it at a later point.
+        //2.
+        return inner;
+    }
+
+    //1
+    //outer();
+
+    //2. calling the outer function creating a outer variable and returning the inner fun. thats why we are getting it into the variable.
+    // check fn into the console.
+    // now if i call fn than outerVar will be there or undefined.
+    const fn = outer();
+
+    fn();
+
+    // even the outer fun is done but still we can access the outer value and maintain the outer variable.
+
+    // now why would we ever use it.
+
+
+    // example 2.
+
+    function createGreeting(greeting = ''){
+        const greet = greeting;
+        return function (name) {
+            return `${greet} ${name}`;
+        }
+    }
+
+    const sayHello = createGreeting('hello');
+    const sayHi = createGreeting('hi');
+
+    console.log(sayHello("srk"));
+    console.log(sayHi("srk"));
+
+    // example 3. private variable.
+
+    function game(name) {
+        let score = 0;
+        return function () {
+            score++;
+            return `your game name is ${name} and your score is ${score}`;
+        }
+    }
+
+    const Game1 = game('cricket');
+    const Game2 = game('football');
+    //const Game2 = game();
+    // here we cant access the score variable.
+
+</script>

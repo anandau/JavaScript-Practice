@@ -1,0 +1,83 @@
+<script>
+
+    let name = 'srk';
+    let name2 = 'srk'
+
+    console.log(name === name2);
+    // true
+    // both variable are same.
+    const person1 = {
+        name: 'srk',
+        age : '23',
+        details: {
+            city: 'ajmer',
+            pin: '30444',
+        }
+    }
+
+    const person2 = {
+        name: 'srk',
+        age : '23',
+    }
+
+    console.log(person1 === person2);
+    // false
+    // why !!!
+    // because both object are same but there reference are different.
+
+    const person3 = person1;
+    console.log(person3);
+    person3.name = 'hardik';
+    console.log(person3);
+    console.log(person1);
+
+    // here if we change the value of person3 than the value of person1 will be updated too.
+    // because in person3 we are storing the reference of person1 not the copy of person1.
+
+    // now the question is how do we take a copy of person1 and change the copy value but it should not modify the original object.
+
+    // for this we use spred operator.
+
+    const person4 = {...person1};
+    console.log(person4);
+    person4.name = 'srk';
+
+    // here the value of person1 will not be changed.
+    // the downside of three dot operator it only allows us to go only 1 level deep.
+    // in deep object the ... will not work.
+
+    person4.details.city = 'jaipur';
+    //here the city will be updated into both the object.
+
+    // for doing deep clone we can use some utility library called "lodash".
+
+    // ... operator can be used for merging the two objects.
+
+    const a = {
+        namea: 'srk',
+        agea : 23
+    }
+
+    const b = {
+        name : 'abc',
+        age : 24
+    }
+
+    const final = {...a, ...b};
+    console.log('final -> ' ,final);
+
+
+    // note : if you pass an object into a function argument and than change the argument value than also it will the value of original object.
+
+    const temp = {
+        name: 'srk'
+    }
+
+    function fun({...data}) {
+        data.name = 'hardik';
+        console.log(data);
+    }
+
+    fun(temp);
+
+</script>

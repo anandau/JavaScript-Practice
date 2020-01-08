@@ -1,0 +1,162 @@
+<script>
+    //1. MAP -> maps takes data performs some operation and return the performed data.
+    // map will always produce the same length data which it has been given.
+
+    const names = ['srk', 'hardik', 'navdeep'];
+
+    const mrnames = names
+        .map(word => {
+            // method 1.
+        //return word[0].toUpperCase() + word.slice(1);
+            //method 2.
+        return `${word[0].toUpperCase()}${word.slice(1)}`;
+        })
+        .map(value => {
+        return `mr. ${value}`;
+        })
+        .map(mr => {
+            return `${mr[0].toUpperCase()}${mr.slice(1)}`;
+        })
+        ;
+
+    console.log(mrnames);
+
+    //2. FILTER -> filter is kind of i want it or i dont want it.
+    // if the condition is true and we want and if false and we dont want.
+    const people = [
+        {
+            name: 'srk',
+            age: 24,
+        },
+        {
+            name: 'hardik',
+            age: 12
+        },
+        {
+            name: 'navdeep',
+            age: 16
+        },
+        {
+            name: 'kishan',
+            age: 30
+        },
+    ];
+
+    // here we are finding the people who are over 20. using filter.
+    // the find only return one index and filter will return all the values.
+    const over20 = people.filter(value => value.age > 20 );
+
+    console.table(over20);
+
+    // high order function.
+
+    //1. we hard coded the age.
+    
+    function findByAge(eachperson) {
+        return eachperson.age === 30
+    }
+    
+    //2. here we are not hard coding the age but using the high order fun.
+    
+    function findByAge2(age) {
+        return function findByAge3(eachperson) {
+            return eachperson.age === age;
+        }
+    }
+    const person3 = people.find(findByAge);
+    const person4 = people.find(findByAge2(12));
+
+    //3. here we are using high order function but in this function we dont have to use specific prop to identify the person.
+    // this is something advance.
+    // even wes bos took 1 2 year to take advantage of this.
+    function findByProp(prop, propWeAreLookingFor) {
+        return function isPeople(eachpeople) {
+            console.log('temp -> ' ,eachpeople);
+            return eachpeople[prop] === propWeAreLookingFor;
+        }
+    }
+
+    const person = people.find(findByProp('name', 'srk'));
+    const person2 = people.find(findByProp('age', 30));
+
+    console.log(person);
+    console.log(person2);
+
+    //3.REDUCE -> it takes the data and it will return a result or a single value.
+    // lets do total of numbers.
+
+    const numbers = [1,2,3,4,5,6,7,8,9,];
+
+    // method 1 ->
+    let total = 0;
+    numbers.forEach((num) => {
+        console.log(num);
+        total += num;
+    });
+    // here we have a callback method and it depends on the outside variable called total.
+    // if we go outside of function than it is called side affect.
+    // so that means it is not the right way to add numbers.
+
+    // method 2 ->
+
+    // on the other hand the reduce will loop over each of the item and keep the total with it.
+    console.clear();
+
+    // the reduce method will take the two arguments.
+    // 1. the first one is the callback function.
+    // 2. the second one is from where we want to start Accumulator or where to start counting. in this case we will start from 0.
+    // if we dont pass the 0 than it will take the first two numbers.
+    const numTotal = numbers.reduce(totalNumber, 0);
+
+    // tally -> is the Accumulator which is passed by last iteration of the loop and it is equal to the next iteration.
+    function totalNumber(tally, currentTotal) {
+        // tally will be 0 at first time because we are string it with 0.
+        // if we return 'srk is cool' than the next iteration will be 'srk is cool'.
+        console.log(tally);
+        console.log(currentTotal);
+        //return 'srk is cool';
+
+
+        // return the current tally PLUS the amount of current number.
+        return tally + currentTotal;
+    }
+
+    // example 2.
+
+    // check how many instance there of shirt, pans etc.
+    // also the total value of inventory.
+    const inventory = [
+        { 'type' : 'shirt', 'price' : 1},
+        { 'type' : 'pants', 'price' : 1},
+        { 'type' : 'socks', 'price' : 1},
+        { 'type' : 'shirt', 'price' : 1},
+        { 'type' : 'pants', 'price' : 1},
+        { 'type' : 'socks', 'price' : 1},
+    ];
+
+    function inventoryReducer(totals , item) {
+        console.log(totals);
+        console.log(item.type);
+        // here we are checking if totals does not have item.type which in case would be shirt,pants or socks.
+        // than we will add a item type to totals and set as 1.
+        // if we find the type than we will increment it by one.
+        totals[item.type] ? totals[item.type]++ : totals[item.type] = 1;
+        return totals;
+    }
+
+    // here we can pass the empty object because we want to start with an object.
+    const totalInventory = inventory.reduce(inventoryReducer, {});
+    // note: if we know the object value than we can do like this.
+    // const totalInventory = inventory.reduce(inventoryReducer, {shirt:0, pants:0, socks:0});
+    // there could be many item so it is safe to pass the empty object.
+
+    // example 3.
+    // add prices of the inventory
+
+    const totalInventoryPrices = inventory.reduce((total,item) => {
+        console.log(total,item);
+        return item.price + total;
+    }, 0)
+
+
+</script>

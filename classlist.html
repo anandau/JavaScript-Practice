@@ -1,0 +1,33 @@
+<html>
+<body>
+<style>
+    .red{
+        color : red;
+    }
+</style>
+<p>
+    hello
+</p>
+<button class="btn">Add class</button>
+<button class="btn2">remove class</button>
+<button class="t">toggle cl</button>
+</body>
+
+<script>
+    const p = document.querySelector('p');
+    const btn = document.querySelector('.btn');
+    const btn2 = document.querySelector('.btn2');
+    const toggle = document.querySelector('.t');
+    console.log(p.classList);
+
+    btn.addEventListener('click',evt => {
+        p.classList.add("red");
+    });
+    btn2.addEventListener('click',evt => {
+        p.classList.remove("red");
+    })
+    toggle.addEventListener('click',evt => {
+        p.classList.toggle("red");
+    })
+</script>
+</html>

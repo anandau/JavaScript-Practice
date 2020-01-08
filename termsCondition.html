@@ -1,0 +1,87 @@
+<html>
+
+<head>
+    <style>
+        .mydiv{
+            text-align: center;
+        }
+        .terms-and-condition{
+            width: 250px;
+            overflow: scroll;
+            height: 400px;
+            margin: 0 auto;
+            text-align: justify;
+        }
+        button{
+            padding: 10px;
+            margin-top: 10px;
+            opacity: 1;
+        }
+
+        /*button.disabled{
+            opacity: 0.3;
+        }*/
+    </style>
+</head>
+<body>
+
+<div class="mydiv">
+    <div class="terms-and-condition">
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+            scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
+            into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
+            release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software
+            like Aldus PageMaker including versions of Lorem Ipsum.
+        </p>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+            scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
+            into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
+            release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software
+            like Aldus PageMaker including versions of Lorem Ipsum.
+        </p>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+            scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
+            into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
+            release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software
+            like Aldus PageMaker including versions of Lorem Ipsum.
+        </p>
+        <p>
+            Thanks for reading.
+        </p>
+    </div>
+    <button class="accept" disabled>I Accept Terms & Condition</button>
+</div>
+
+<script>
+    const terms = document.querySelector('.terms-and-condition');
+    const accept = document.querySelector('.accept');
+    function obCallBack(payload) {
+        if (payload[0].intersectionRatio === 1){
+            accept.disabled = false;
+            // stop observer
+            //ob.unobserve(terms.lastElementChild);
+        }else{
+            accept.disabled = true;
+        }
+        console.log(payload[0].intersectionRatio);
+    }
+
+    // first argument is the callback function.
+    // second argument is an object.
+    // root : what are we scrolling with.
+    // threshold: [0, 0.5, 1];
+    //            [off, halfway, 100% on the page].
+    // your threshold should be short enough to display 100% on the page.
+
+    const ob = new IntersectionObserver(obCallBack,{root : terms, threshold: 1});
+
+    ob.observe(terms.lastElementChild)
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<html>
+    <script>
+
+        // setTimeout is after how many second something should run.
+        console.log('starting');
+
+        setTimeout(function () {
+            console.log('call');
+        }, 1000);
+
+        console.log('ending');
+
+        // setInterval is how often something should run.
+        setInterval(function () {
+            console.log('interval');
+        }, 500);
+
+        // the setInterval will not run immediately.
+        // so for that we have to create our own fun.
+        function run() {
+            console.log('run');
+        }
+        function runImmediateInterval(funtorun, ms) {
+            funtorun();
+            return setInterval(funtorun, ms);
+        }
+
+        runImmediateInterval(run, 500);
+
+        // for clearing the Interval we have to save the reference of the interval or timeout.
+        function destroy() {
+            document.body.innerHTML = `<p>Destroyed</p>`;
+        }
+
+        const bomb = setTimeout(destroy, 2000);
+
+        window.addEventListener('click', evt => {
+            document.body.innerHTML = `<p>Ohh you saved to world!!!</p>`;
+            // stop the timer from running.
+            clearTimeout(bomb);
+        })
+    </script>
+</html>

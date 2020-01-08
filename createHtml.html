@@ -1,0 +1,34 @@
+<html>
+<body>
+
+</body>
+
+<script>
+    const p = document.createElement('p');
+    p.textContent = 'i am a p';
+    p.classList.add('p');
+    console.log(p);
+
+    const img = document.createElement('img');
+    img.src = "18-CONTACTUS-HEADER.jpg";
+    img.alt = "cute image";
+    console.log(img);
+
+    const div = document.createElement('div');
+    div.classList.add("wrapper");
+
+
+    // always keep in mind the flow of updating of dom.
+    // means body should always be updated in the end.
+    div.appendChild(p);
+    div.appendChild(img);
+    document.body.appendChild(div);
+
+    // ohhh now we have to add an heading to the top.
+
+    const heading = document.createElement('h2');
+    heading.textContent = 'i am an heading';
+
+    div.insertAdjacentElement("afterbegin", heading);
+</script>
+</html>

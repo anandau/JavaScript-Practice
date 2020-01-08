@@ -1,0 +1,78 @@
+<html>
+
+<head>
+    <style>
+        button{
+            padding: 20px;
+        }
+        .modal-outer{
+            display: grid;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 100vw;
+            background: rgba(0,0,0,0.7);
+            justify-content: center;
+            align-items: center;
+            visibility: hidden;
+        }
+        .modal-inner{
+            max-width: 600px;
+            mix-width: 400px;
+            padding: 2rem;
+            border-radius: 5px;
+            background: white;
+        }
+        .modal-outer.open{
+            visibility: visible;
+        }
+    </style>
+</head>
+<body>
+<button class="btn">Open Modal!</button>
+
+<div class="modal-outer">
+    <div class="modal-inner">
+        this is modal
+    </div>
+</div>
+<script>
+    const modal = document.querySelector('.modal-outer');
+    const open = document.querySelector('.btn');
+
+    function openModal() {
+        console.log('click');
+        console.log(modal);
+        modal.classList.add('open');
+    }
+    function closeModal(){
+        modal.classList.remove('open');
+    }
+
+    modal.addEventListener('click',evt => {
+        // ! is used for converting to bool like true or false.
+        // isOutside will be true if we click outside the ".modal-inner".
+        const isOutside = !evt.target.closest('.modal-inner');
+        console.log(isOutside);
+        if (isOutside){
+            closeModal();
+        }
+    })
+
+    open.addEventListener('click', openModal);
+
+    // close modal on "ESCAPE" key pressed.
+
+    window.addEventListener('keydown',evt => {
+        console.log(evt.key);
+        if(evt.key === 'Escape'){
+            closeModal();
+        }
+    })
+
+</script>
+
+
+</body>
+</html>

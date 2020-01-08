@@ -1,0 +1,172 @@
+<html>
+
+    <head>
+        <style>
+            img{
+                width: 500px;
+                height: 400px;
+                transition: 0.2s;
+            }
+            .round{
+                border-radius: 50%;
+            }
+            button{
+                padding: 20px;
+            }
+        </style>
+    </head>
+    <body>
+
+    <!--<img src="18-CONTACTUS-HEADER.jpg" class="nice" data-name="sharukh" data-last="khan">-->
+    <div class="mydiv">
+        <!--<canvas width="1600" height="800" id="myCanvas"></canvas>-->
+    </div>
+    <button class="btn">Open Modal!</button>
+
+    <script>
+        /*const pic = document.querySelector('.nice');*/
+
+        /*pic.addEventListener('click',evt => {
+            pic.classList.toggle('round');
+        })*/
+
+        /*console.log(`welcome ${pic.dataset.name} ${pic.dataset.last}`);*/
+
+        /*const ul = document.createElement('ul');
+        const li = document.createElement('li');
+        li.textContent = "1";
+        ul.appendChild(li);
+        console.log(ul);
+        document.body.appendChild(ul);*/
+
+        /*const mydiv = document.querySelector('.mydiv');
+
+        const myhtml = `<h2>Hello i am srk</h2> <img src="18-CONTACTUS-HEADER.jpg" onload="alert('hacked')">`;
+
+        mydiv.innerHTML = myhtml;
+        console.log(typeof myhtml);
+
+        const h2 = document.querySelector('h2');
+        h2.classList.add('hello');*/
+
+        /*const div = document.createElement('div');
+        div.textContent = "i am div";
+        div.classList.add('wrapper');
+        document.body.insertAdjacentElement('beforebegin', div);*/
+
+        /*const btn = document.querySelector('.btn');
+
+        btn.addEventListener('click',evt => {
+            console.log(evt.target);
+            console.log(evt.currentTarget);
+            console.log(evt.target === evt.currentTarget);
+             evt.stopPropagation();
+        });
+
+        window.addEventListener('click',evt => {
+            console.log('click the window');
+        });*/
+
+        /*const info = {
+            name: 'srk',
+            age: 20,
+            sayHi: function (greeting = 'hey') {
+                return `${greeting} ${this.name}`
+            },
+        }*/
+
+        /*const info = {
+            name : 'srk',
+            age : 20,
+        }
+
+        const info1 = info;
+        const copy = {...info};
+
+        const num = [1,2,4,100,5,6];
+
+        const newnum = [
+            ...num.slice(0,2),
+            3,
+            ...num.slice(2)
+        ]
+        const updatearray = [
+            ...num.slice(0,3),
+            ...num.slice(4)
+        ]
+
+        const name = [
+            { text: 'hi', id: 1 },
+            { text: 'hello', id: 2 },
+            { text: 'how are you', id: 3 },
+            { text: 'find', id: 4 },
+            { text: 'good', id: 5 },
+        ]
+
+        function deleteFromArray(name, id) {
+            const index = name.findIndex(value => {
+                return value.id === id;
+            })
+
+            console.log(name);
+            console.log(index);
+            return [
+                ...name.slice(0, index),
+                ...name.slice(index+1)
+            ]
+        }
+
+        const afterDelete = deleteFromArray(name, 3);
+
+        console.clear();
+
+        const students = [
+            {
+                id: 1,
+                first_name: 'srk',
+                last_name: 'khan',
+            },
+            {
+                id: 2,
+                first_name: 'hardik',
+                last_name: 'sharma',
+            },
+            {
+                id: 3,
+                first_name: 'navdeep',
+                last_name: 'verma',
+            },
+            {
+                id: 4,
+                first_name: 'kishan',
+                last_name: 'gopal',
+            }
+        ];
+
+
+        function findStudent(prop , property) {
+            return (student) => {
+                return student[prop] === property;
+                //console.log(student[prop] === property)
+            }
+        }
+
+        const student = students.find(findStudent('id', 2));*/
+
+        const btn = document.querySelector('.btn');
+
+        const arr = [1,2,3,4,5];
+        const obj = {name: 'srk', age: 22, id: 2};
+
+        btn.addEventListener('click',evt => {
+            //set item to local storage.
+            // local storage always takes data into string.
+            localStorage.setItem('arr', arr.toString());
+            localStorage.setItem('obj', JSON.stringify(obj));
+        })
+
+    </script>
+
+
+    </body>
+</html>

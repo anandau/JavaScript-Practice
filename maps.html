@@ -1,0 +1,72 @@
+
+<body>
+    <ul class="price">
+    </ul>
+</body>
+
+<script>
+    const map = new Map();
+    const ul = document.querySelector('.price');
+    const person = {
+        name: 'srk',
+        age : 33
+    }
+    map.set('name', 'srk');
+    // in maps the keys could be any type it could be number string etc.
+    map.set(1, "hi");
+    // here we can even set the key as an object and than we can access the value on the basis of object.
+    map.set(person, 'srk is cool');
+
+    console.log(map)
+    console.log(map.get(person));
+
+    //example 2
+    const score = 300;
+    const price = new Map();
+    price.set(100, "gold");
+    price.set(200, "silver");
+    price.set(300, "car");
+
+    console.log(`you won a ${price.get(score)}`);
+
+    // check the size.
+    console.log(map.size);
+
+    // in maps the order is the as same as you give tham not like object.
+    // object order can be anything but in the case of maps.
+    // so if you want order to maintain than we can use maps.
+
+    console.log(price);
+
+    for (const [key, value] of price){
+        console.log(key, value);
+        const li = `<li>${key} - ${value}</li>`;
+        ul.insertAdjacentHTML("beforebegin", li);
+    }
+
+    // we can put method in to the object but not in the maps.
+
+    // and if you want to use json with the maps than it is not possible in the maps.
+
+    //ex
+
+    const details = {
+        name : 'srk',
+        age : 23,
+    }
+
+    // it can be send to database or anywhere we want.
+    console.log(JSON.stringify(details));
+    console.log(JSON.parse(JSON.stringify(details)));
+
+    // what if we use json with maps.
+
+    // it will give us a empty string because maps does not support the json yet.
+    console.log(JSON.stringify(price));
+
+    // now if you have maps and want to send data to server we have to convert it into an object.
+
+    const priceObj = Object.fromEntries(price);
+    console.log(priceObj);
+
+</script>

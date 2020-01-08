@@ -1,0 +1,58 @@
+<html>
+<body>
+<div class="wrapper">
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+    <div>
+        <img src="18-CONTACTUS-HEADER.jpg" width="100" height="100">
+    </div>
+</div>
+</body>
+
+<script>
+        const ul = document.querySelector('ul');
+        const div = document.querySelector('div');
+        const wrapper = document.querySelector('.wrapper');
+        console.log(ul.innerHTML);
+        ul.innerHTML += `<li>5</li>`;
+
+        console.log(div.innerHTML);
+        const el = `
+            <div class="head">
+            <h1>heading</h1>
+            </div>
+        `;
+        div.innerHTML += el;
+
+        // what if we want to add a class to head div.
+        // cant do this.
+        //el.classList.add('new');
+        console.log(typeof el);
+
+        // method 1
+        // for this we have to pull it back from dom after dump into dom.
+        const head = document.querySelector('.head');
+        head.classList.add("new-cls");
+
+        // method 2.
+        // turn the string into the element fragment.
+
+        const myFragment = document.createRange().createContextualFragment(el);
+
+        console.log(myFragment);
+        console.log(myFragment.querySelector(".head"));
+
+        wrapper.appendChild(myFragment);
+
+        // loop hols in this method where we are creating html using string.
+        // can be added <style>* {display: none}
+        const des = `i am des <h3>srk</h3> <img src="18-CONTACTUS-HEADER.jpg" onload="alert('hacked')"`;
+        const desEl = `<h1>${des}</h1>`
+        const desFragment = document.createRange().createContextualFragment(desEl);
+        wrapper.appendChild(desFragment);
+</script>
+</html>

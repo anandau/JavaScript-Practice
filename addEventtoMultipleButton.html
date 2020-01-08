@@ -1,0 +1,45 @@
+<html>
+    <body>
+        <button class="btn1">button 1</button>
+        <button class="btn">button <strong>2</strong></button>
+        <button class="btn">button <strong>3</strong></button>
+        <button class="btn">button <strong>4</strong></button>
+        <button class="btn">button <strong>5</strong></button>
+        <button class="btn">button <strong>6</strong></button>
+        <button class="btn">button <strong>7</strong></button>
+    </body>
+
+    <script>
+        const btn = document.querySelector('.btn1');
+        btn.addEventListener('click', function () {
+            console.log('clicked');
+        });
+
+        const buttons = document.querySelectorAll('.btn');
+
+        console.log(buttons);
+        console.dir(btn);
+
+        buttons.forEach((button) => {
+            button.addEventListener('click', function (e) {
+                console.log('you clicked a button');
+                // e.target is the thing which is clicked.
+                // e.currentTarget is the thing which is fired on click.
+                // so we should use currentTarget.
+                console.log( e.target );
+                console.log( e.currentTarget );
+                console.log(e.target === e.currentTarget);
+                // stop this event from bubbling up.
+                e.stopPropagation();
+            })
+        });
+
+        // after that in the final
+        // it is possible to click on multiple things at a time and it is called propagation.
+        window.addEventListener('click', evt => {
+            console.log('you clicked on window');
+            //evt.stopPropagation();
+            //evt.stopPropagation();
+        }/*, {capture : true}*/)
+    </script>
+</html>

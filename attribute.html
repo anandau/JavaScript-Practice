@@ -1,0 +1,20 @@
+<html>
+<body>
+    <img src="18-CONTACTUS-HEADER.jpg" width="500" height="500">
+    <!--for custom attribute we have data attributes.-->
+    <img src="18-CONTACTUS-HEADER.jpg" width="500" height="500" data-name="pic1" class="pic1">
+    <img src="18-CONTACTUS-HEADER.jpg" width="500" height="500" data-name="pic2">
+</body>
+<script>
+    const img = document.querySelector('img');
+    const img2 = document.querySelector('.pic1');
+    img.alt = 'cute pic';
+    img.setAttribute('height', 1000);
+    img.setAttribute('srk-is-cool', 'srk is cool');
+
+    // for custom attribute we have data attributes.
+    // can be used for multiple image size like large small etc.
+    console.log(img2.dataset);
+
+</script>
+</html>

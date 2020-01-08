@@ -1,0 +1,129 @@
+<script>
+
+    //1. array mutation -> there are some function array function which mutate the original array when we use tham.
+
+    const arr = [1,2,3,4,5,6,7,8,9,];
+
+    const rev = arr.reverse();
+    // here we used the reverse function which is a mutation function that means it will change the original array as well.
+    // the arr also will be reversed even if we use rev variable.
+    // that is called the mutation function.
+    console.log(rev);
+
+    // immutable function. -> they do not change the original data.
+
+    const arr2 = [1,2,3,4,5,6,7,8,9,];
+
+    const slice = arr2.slice(3,6);
+
+    console.log(slice);
+
+    // now what if you want to use mutation fun and do not want to change the original array.
+    // we use ... operator.
+
+    const arr3 = [1,2,3,4,5,6,7,8,9,];
+
+    const rev3 = [...arr3].reverse();
+
+    console.log(rev3);
+
+    // the two fun which always confuse you.
+    // they both used to get a subset of an array.
+    // slice -> it is immutable.
+    // splice. -> it is mutable.
+
+    const arr4 = [1,2,3,4,5,6,7,8,9,];
+    console.log('before -> ', arr4);
+    const arr5 = arr4.splice(2,5);
+    console.log('after -> ', arr4);
+    console.log(arr5);
+
+    // add an item to middle of the array.
+    // no fun here to add item in the middle.
+    // so do like this.
+
+    const arr6 = [1,2,3,5,6,7,8,9,]
+
+    const arr7 = [
+        ...arr6.slice(0,3),
+        4,
+        ...arr6.slice(3)
+    ];
+
+    console.log(arr7);
+
+    // delete the item.
+
+    const arr8 = [1,2,3,4,5,6,7,8,9,];
+
+    const arr9 = [
+        ...arr8.slice(0,3),
+        ...arr8.slice(4)
+    ];
+    console.log(arr9);
+
+    // delete using find index .
+
+    const arr10 = [
+        {
+            name: 'srk',
+            age : 24
+        },
+        {
+            name: 'hardik',
+            age : 25
+        },
+        {
+            name: 'abc',
+            age : 242
+        },
+        {
+            name: 'navdeep',
+            age : 22
+        }
+    ];
+    // 1.
+    const index = arr10.findIndex(value => {
+        if(value.name === 'abc'){
+            return true;
+        }
+        return;
+    });
+    // 2.
+    const index2 = arr10.findIndex(value => value.name === 'abc' );
+
+    const arr11 = [
+        ...arr10.slice(0,index),
+        ...arr10.slice(index + 1)
+    ]
+
+    console.log(arr11);
+
+    // some array fun.
+
+    // create an array given values.
+    console.log(Array.of('srk', 'hardik'));
+
+    //this fun will create an array up to 10 and set value srk.
+    const arr12 = Array.from({length: 10}, () => {
+        return 'srk';
+    });
+
+    console.log(arr12);
+
+    // Array.isArray -> will check whether we have array or not.
+
+    console.log(typeof arr); // -> will give object.
+    console.log(Array.isArray(arr)) // -> will give true.
+
+    //join will join the array.
+    const joinarr = arr.join("");
+    console.log(joinarr);
+
+    // split will split the value and turn it into an array on the basis of argument given..
+    const str = "srk, hardik, navdeep";
+    console.log(str.split(","));
+    console.log(joinarr.split(""));
+
+
+</script>
