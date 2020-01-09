@@ -1,0 +1,97 @@
+<body>
+
+<style>
+    .mydiv{
+        background: black;
+        width: 200px;
+        height: 200px;
+        color: white;
+        transition: all 0.2s;
+    }
+    .mydiv.pink{
+        background: pink;
+    }
+    .mydiv.round{
+        border-radius: 50%;
+    }
+    .mydiv.fadeout{
+        opacity: 0;
+    }
+</style>
+
+
+<div class="mydiv">
+    click me.
+</div>
+
+<script>
+
+
+    // note:
+    // the Async and Await is also kind of Promise but with different syntax.
+    // its not Async vs. Promises.
+
+
+    const div = document.querySelector('.mydiv');
+
+    // here in this wait function we will wait for given ms time and on the given ms we will resolve our promise.
+
+    function wait(ms = 0){
+        return new Promise(function (resolve,reject) {
+            setTimeout(() => {
+                resolve(`waited for ${ms}.`);
+            }, ms);
+        })
+    }
+
+    // we can only use the Async and wait inside the Async marked function.
+    // we dont have to use .then with await.
+    async function go(evt){
+        const el = evt.currentTarget;
+
+        el.textContent = 'go';
+        console.log('starting');
+        await wait(2000);
+        el.classList.add('pink')
+        await wait(200);
+        el.classList.add('round');
+        await wait(300);
+        el.classList.add('pink');
+        await wait(400);
+        el.classList.remove('round');
+        await wait(300);
+        el.classList.add('fadeout');
+        console.log('ending');
+    }
+
+    // step 2.
+    // what if we want to await more than one function to be done and want their result.
+
+    function makePromise(){
+        const animation = new Promise(function (resolve, reject) {
+            setTimeout(() => {
+                resolve('resolve')
+            }, 500)
+        });
+
+        return animation;
+    }
+
+    async function awaitForMutiple() {
+        const p1 = makePromise();
+        const p2 = makePromise();
+
+        //const mega = await Promise.all([p1,p2]);
+        // here we are waiting for both to return resolve.
+
+        const [resp1, resp2] = await Promise.all([p1,p2]);
+
+        console.log(resp1,resp2);
+    }
+
+    awaitForMutiple();
+    div.addEventListener('click', evt => go(evt));
+
+</script>
+
+</body>

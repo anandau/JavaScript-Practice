@@ -1,0 +1,70 @@
+<body>
+
+<style>
+    .mydiv{
+        background: black;
+        width: 200px;
+        height: 200px;
+        color: white;
+        transition: all 0.2s;
+    }
+    .mydiv.pink{
+        background: pink;
+    }
+    .mydiv.round{
+        border-radius: 50%;
+    }
+    .mydiv.fadeout{
+        opacity: 0;
+    }
+</style>
+
+
+    <div class="mydiv">
+        click me.
+    </div>
+
+<script>
+
+    //1. change the text to go on click.
+    //2. change the background after 2000ms from black to pink.
+    //3. change div to circle after 200ms.
+    //4. change background color to blank after 300ms.
+    //5. change div to square after 400ms.
+    //6. fade out div after 200ms.
+
+    const div = document.querySelector('.mydiv');
+
+    div.addEventListener('click', evt => {
+        const el = evt.currentTarget;
+
+        console.log(evt.currentTarget);
+        //1
+        el.textContent = 'go';
+
+        // this is what we call callback hell.
+        // callback comes when you need to do each of things one after another than we have to nested the callback with each.
+        // because they all depends on each other.
+        // in this type of coding we dont know the order of calling function.
+        setTimeout(() => {
+            el.classList.add('pink');
+            setTimeout(() =>{
+                el.classList.add('round');
+                setTimeout(() => {
+                    el.classList.remove('pink');
+                    setTimeout(() => {
+                        el.classList.remove('round');
+                        setTimeout(() => {
+                            el.classList.add('fadeout');
+                        },300);
+                    },400);
+                },300);
+            },200)
+        },2000)
+    });
+
+    // the solution of this callback hell is promise.
+
+</script>
+
+</body>

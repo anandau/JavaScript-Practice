@@ -1,20 +1,155 @@
-<html>
-    <body>
-        <h1>Promise</h1>
-    </body>
+<body>
+
+<style>
+    .mydiv{
+        background: black;
+        width: 200px;
+        height: 200px;
+        color: white;
+        transition: all 0.2s;
+    }
+    .mydiv.pink{
+        background: pink;
+    }
+    .mydiv.round{
+        border-radius: 50%;
+    }
+    .mydiv.fadeout{
+        opacity: 0;
+    }
+</style>
+
+
+<div class="mydiv">
+    click me.
+</div>
 
 <script>
 
-    const p = new Promise((resolve, reject) =>{
-        setTimeout(() =>{
-            //resolve('promise has returned');
-            reject(Error('error no item')  );
-        },2000)
-    });
+    // promise is an idea of something will happen in future.
+    // like
+    //
 
-    p
-    .then(data =>{
-        console.log(data);
-    })
+    //1. change the text to go on click.
+    //2. change the background after 2000ms from black to pink.
+    //3. change div to circle after 200ms.
+    //4. change background color to blank after 300ms.
+    //5. change div to square after 400ms.
+    //6. fade out div after 200ms.
+
+    const div = document.querySelector('.mydiv');
+
+    //step 1.
+        function makePromise(){
+            const animation = new Promise(function (resolve, reject) {
+                setTimeout(() => {
+                    resolve('resolve')
+                }, 500)
+            });
+
+            return animation;
+        }
+    
+    function makePromiseRject(condition){
+         return new Promise(function (resolve,reject) {
+             if(condition){
+                 reject("the promise has been rejected");
+             }
+
+             resolve("the promise has been accepted");
+         })
+    }
+
+    div.addEventListener('click', evt => {
+        const el = evt.currentTarget;
+
+        console.log(evt.currentTarget);
+        //1
+        el.textContent = 'go';
+
+        // step 1. starts
+
+        const p = makePromise();
+        console.log(p); // will show our pending promise.
+
+        // for accessing the value from promise we use then.
+        p.then(res => {
+            console.log(res);
+        });
+
+        // step 1. ends.
+
+        // step 2. starts.
+
+        // we can return the makePromise and can get the data again.
+        // here we are running them one after another.
+        // so they will be called in liner form.
+        makePromise().then(res => {
+            console.log(res);
+            return makePromise()
+        }).then(res =>{
+            console.log(res);
+            return makePromise()
+        }).then(res => {
+            console.log(res);
+        })
+
+        // step 2. ends.
+
+        // step 3. starts.
+
+        // now what if we want to run all the callback concurrently.
+        // and we want all callback result in one single result.
+
+        const p1 = makePromise();
+        const p2 = makePromise();
+        const p3 = makePromise();
+        const p4 = makePromise();
+
+        // they are running but not concurrently and we have to call them one by one.
+        p1.then(res => console.log(res));
+        p2.then(res => console.log(res));
+        p3.then(res => console.log(res));
+        p4.then(res => console.log(res));
+
+        // so what we do now.
+
+        // we create a " Mega Promise".
+        // the Promise.all will take all your promises and will return resolve when all promises are resolved.
+        const res = Promise.all([p1,p2,p3,p4]);
+
+        // here we will get all the data after all the works have been done.
+        res.then(data => console.log(data));
+
+        // the Promise.race will take all promise and returns whosoever resolved the first and after that return remaining resolved.
+        const first = Promise.race([[p1,p2,p3,p4]]);
+
+        first.then(f => console.log('you must be hurry here it is your promise ', f));
+
+
+        // PROMISE REJECT with error handling.
+
+        // here we will get an error in our console.
+        // so we can even handle this error by using catch.
+        makePromiseRject(true).then(res => console.log(res)).catch(err => console.log('ohh no', err));
+        // the then will only work when the resolve will work successfully and catch when reject run.
+        // so for almost in all cases we should use .catch after then.
+
+        // what will happen if we run them all.
+        console.clear();
+        const e1 = makePromiseRject(false);
+        const e2 = makePromiseRject(true);
+        const e3 = makePromiseRject(false);
+
+        const emega = Promise.all([e1,e2,e3]).catch(err => console.log('all erro ', err));
+        emega.then(res => console.log(res));
+        // in above case the e1 will run and then the e2 will run but since the e2 will return reject it will break the next promise from running.
+
+        // so for that we use Promise.allSettled
+        const emega2 = Promise.allSettled([e1,e2,e3]);
+        emega2.then(res => console.log('all settled -> ', res));
+
+    });
 </script>
-</html>
+
+</body>

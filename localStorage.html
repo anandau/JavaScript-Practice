@@ -1,0 +1,61 @@
+<html>
+    <body>
+        <form class="form">
+            <input class="input" placeholder="enter a value" name="inputVal">
+            <button name="save">Save</button>
+            <button name="get">Get Local Storage Values</button>
+        </form>
+    </body>
+
+    <script>
+        // go to application tab and go to local storage.
+        const form = document.querySelector('.form');
+        const store = [];
+        const get = document.querySelector('[name=get]');
+
+        form.addEventListener('submit', evt => {
+            evt.preventDefault();
+            console.log(evt.currentTarget.inputVal.value);
+            // return if empty.
+            if(!evt.currentTarget.inputVal.value) return;
+            const item = {
+                id: Date.now(),
+                value: evt.currentTarget.inputVal.value
+            };
+
+            store.push(item);
+            console.log(store);
+            // to clear the form ro reset.
+            evt.currentTarget.reset();
+
+            // save to Local Storage.
+            saveToLocalStorage();
+        });
+        
+        function saveToLocalStorage() {
+            // step 1.
+            localStorage.setItem('item', store);
+            // local storage is text only.
+            // which means what we pass to local storage it will add .toString to it and store it.
+            // so what even the item would be maybe array,bool,object it will add .toString to it.
+
+            console.log(['a','b'].toString());
+            console.log('srk'.toString());
+            console.log({'name': 'srk'}.toString()); // it will return object object.
+
+            // step 2.
+            // so how do we convert an object to a string.
+            // JSON.
+
+            // the right way to pass an object to local storage.
+            localStorage.setItem('item', JSON.stringify(store));
+        }
+
+        function getValueFromLocalStorage() {
+            const values = JSON.parse(localStorage.getItem('item'));
+            console.log(values);
+        }
+
+        get.addEventListener('click', getValueFromLocalStorage);
+    </script>
+</html>

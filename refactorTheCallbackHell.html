@@ -1,0 +1,69 @@
+<body>
+
+<style>
+    .mydiv{
+        background: black;
+        width: 200px;
+        height: 200px;
+        color: white;
+        transition: all 0.2s;
+    }
+    .mydiv.pink{
+        background: pink;
+    }
+    .mydiv.round{
+        border-radius: 50%;
+    }
+    .mydiv.fadeout{
+        opacity: 0;
+    }
+</style>
+
+
+<div class="mydiv">
+    click me.
+</div>
+
+<script>
+
+    //1. change the text to go on click.
+    //2. change the background after 2000ms from black to pink.
+    //3. change div to circle after 200ms.
+    //4. change background color to blank after 300ms.
+    //5. change div to square after 400ms.
+    //6. fade out div after 200ms.
+
+    const div = document.querySelector('.mydiv');
+
+    // here in this wait function we will wait for given ms time and on the given ms we will resolve our promise.
+    function wait(ms = 0){
+        return new Promise(function (resolve,reject) {
+            setTimeout(() => {
+                resolve(`waited for ${ms}.`);
+            }, ms);
+        })
+    }
+
+    wait(1000).then(res => console.log(res));
+
+    div.addEventListener('click', evt => {
+        const el = evt.currentTarget;
+
+        console.log(evt.currentTarget);
+        //1
+        el.textContent = 'go';
+
+        wait(2000)
+            .then(() => {el.classList.add('pink');return wait(200)})
+            .then(() => {el.classList.add('round'); return wait(300)})
+            .then(() => {el.classList.remove('pink'); return wait(400)})
+            .then(() => {el.classList.remove('round'); return wait(300)})
+            .then(() => {el.classList.add('fadeout')});
+
+        // it looks much batter than nesting with setTimeout.
+        // we will refactor it more and make it more readable when we hit async and wait.
+    });
+
+</script>
+
+</body>
