@@ -1,0 +1,31 @@
+<html>
+<body>
+    <!--modules :- being able to share code between multiple files.
+    by using we can structure and organised code.
+
+    created three different files handlers,utils,scripts and we want to share data between them.-->
+
+    <!-- method 1
+        in this method if we want to use returnHi from utils inside script.js than we have to load it before scripts.js
+
+        // now what if, if you have 10000000 js files. ooookkkkk....
+        // then we will load them.
+        // ok got it you can write 10000000 scripts tags.
+
+        // now what if, if 1000 files are dependent on another 1000 files how will you define their order.
+
+        // oookkk now i give up. :).
+
+        // then lets use Modules.
+
+        <script src="utils.js"></script>
+        <script src="scripts.js"></script>
+     -->
+
+    <!-- method 2 -->
+
+    <script src="scripts.js" type="module"></script>
+</body>
+</html>
+<script>
+</script>

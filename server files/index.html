@@ -1,0 +1,63 @@
+<html>
+<body>
+<input type="text" required>
+<button> Find Recipes </button>
+</body>
+
+<script>
+    const endpoint = `http://www.recipepuppy.com/api/?&q=`;
+    const input = document.querySelector('input');
+    const btn = document.querySelector('button');
+    const proxy = `https://cors-anywhere.herokuapp.com/`;
+    let inputValue = '';
+
+
+    async function fetchRecipes(query = 'pizza') {
+        console.log('call');
+        const res = await fetch(`${proxy}${endpoint}${query}`);
+        const data = await res.json();
+
+        console.log(data);
+        // what another error -> regeneratorRuntime is not defined
+        // the regeneratorRuntime is thing called BABEL.
+        // so what babel does it takes our js code and trans compile our modern js code to runnable code for old browser.
+        // so here the babel is compiling this "async and await".
+        // we dont need to compile this because most browser support this.
+
+        // so for that you go to package.json and add this.
+
+        //"browserslist": ["last 1 chrome versions"]
+        // so what does it do is we let know babel that we are using the modern browser.
+
+        // here the regeneratorRuntime is solved
+        // note : if every thing is fine and yet we are getting the error than stop the server.
+        // and delete .cache and dist folder.
+
+
+        // now what more error.
+
+        // so here this error means we cant not access the data from the browser.
+        // means if we are trying to access data from server like node.js, php, so that means we can access the data.
+        // so for this error the solution instead of going from localhost to recipepuppy.com we will use PROXY.
+        // PROXY -> the localhost will send request to proxy and the proxy will make a server side request to recipepuppy.com
+        // and recipepuppy will send the data to proxy and proxy will send data to us.
+
+        // now go to google and search CORS Proxy.
+        // and get the url -> https://cors-anywhere.herokuapp.com/
+        // and paste it before our endpoint.
+
+        // NOTE:------------------->
+
+        // we are using https://cors-anywhere.herokuapp.com/ proxy to fetch data.
+        // that means we are getting or setting data from some random server so dont use it if you have any important data like username,password etc.
+        // if we have some important data than we must our own proxy server.
+    }
+
+    input.oninput = (val) => {
+        inputValue = val.target.value;
+    }
+
+    btn.addEventListener('click', () => {fetchRecipes(inputValue)});
+
+</script>
+</html>

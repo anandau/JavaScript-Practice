@@ -35,7 +35,24 @@
             // remember the CORS Policy can only be implemented at the server side.
             // so in our case the recipepuppy.com will implement -> ok the srk.com or whatever.com is allowed to aks for data and we can return it that is safe.
             // so basically to talk to recipepuppy.com we have to have an origin.
-            // and if we look at the error
+            // so we are running every files locally so cant talk to recipepuppy.com
+            // so for that we have to run our files on server.
+            // so we will use a server.
+            // and here we will use the parcel.
+            // we will install it in our server folder.
+
+            // steps to install the parcel.
+
+            // npm init.
+            // npm i parcel-bundler
+            // go to package.json
+            // change "test": "echo \"Error: no test specified\" && exit 1"
+            // TO
+            // "start": "parcel index.html"
+            // create a new file in server index.html and copy our code.
+            // and in terminal
+            // npm run start
+
         }
 
         fetchRecipes();
