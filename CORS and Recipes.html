@@ -1,0 +1,43 @@
+<html>
+    <body>
+        <input type="text" required>
+        <button> Find Recipes </button>
+    </body>
+
+    <script>
+        const endpoint = `http://www.recipepuppy.com/api/?&q=`;
+        const input = document.querySelector('input');
+        const btn = document.querySelector('button');
+
+        async function fetchRecipes(query = 'pizza') {
+            const res = await fetch(`${endpoint}${query}`);
+            const data = await res.json();
+
+            console.log(data);
+
+            // here if we get the data than we will get an error for CORS.
+            // in this request we are block by the browser.
+            // now what is CORS.
+            // C = Cross.
+            // O = Origin.
+            // R = Resource.
+            // S = Sharing.
+
+            // now what is Origin here.
+            // srk.com and github.com they both are origin domain names are origin.
+            // now if we want to share data between two origin than you are not allowed to share tha data.
+            // why !!!!.
+            // what if you are at srk.com and you want data from bank.com ohhh nooo way.
+
+            // in our case we want data from recipepuppy.com to our domain name.
+            // so for that we have to talk to recipepuppy.com so that we can get the data.
+            // now if recipepuppy.com wants to share data to any domain name than it has to implement the CORS Policy at the server side.
+            // remember the CORS Policy can only be implemented at the server side.
+            // so in our case the recipepuppy.com will implement -> ok the srk.com or whatever.com is allowed to aks for data and we can return it that is safe.
+            // so basically to talk to recipepuppy.com we have to have an origin.
+            // and if we look at the error
+        }
+
+        fetchRecipes();
+    </script>
+</html>

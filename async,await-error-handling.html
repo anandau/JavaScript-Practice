@@ -1,0 +1,52 @@
+<body>
+<script>
+
+    // error handling with async and await.
+    function wait(ms = 0, check = false){
+        return new Promise(function (resolve,reject) {
+            setTimeout(() => {
+                if (check){
+                    reject(`you are rejected`);
+                }
+                resolve(`waited for ${ms}.`);
+            }, ms);
+        })
+    }
+
+
+    // method 1 to handle errors.
+    async function run() {
+        try {
+            const res = await wait(200, true);
+            console.log(res);
+        }catch (e) {
+            console.log('you got and error -> ', e);
+        }
+    }
+
+    // method 2 to handle errors.
+    // here we are using promise's .catch function.
+    // this will fire when we define the function.
+    async function run2() {
+            const res = await wait(200, true).catch((e) => console.log('run 2 you got and error -> ', e));
+            console.log(res);
+    }
+
+    run();
+    run2();
+
+    // method 3 to handle errors.
+    // this will fire when we call the function.
+    // this is the method that is even wes bos preferred.
+    async function run3() {
+        const res = await wait(200, true);
+        console.log(res);
+    }
+
+    // this will only happen when the function is called.
+    run3().catch((e) => console.log('run 3 you got an error -> ', e));
+
+
+</script>
+
+</body>

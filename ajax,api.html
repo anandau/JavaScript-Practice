@@ -1,0 +1,32 @@
+<script>
+    //1. http://www.recipepuppy.com/api/?&q=pizza
+    //2. https://api.github.com/users/sharukhkhanajm
+    // api returns data into json format.
+
+    // use json viewer for batter viewing experience.
+
+    const endpoint = 'https://api.github.com/users/sharukhkhanajm';
+
+    // for getting data we use fetch api.
+    // the fetch will return a promise.
+    const srkPromise = fetch(endpoint);
+    //here we have our promise and we can it in the network tab.
+    console.log(srkPromise);
+    // now we need to get the data from promise.
+    //  here we dont get the data yet but get the response from the api.
+    // the return response.json() will return us an another promise.
+    srkPromise.then(response => {return response.json()}).then(data => console.log(data)).catch(err => console.log('you got an error ', err));
+
+    // now let refactor this with async and await.
+
+    async function displayUser(username = 'sharukhkhanajm') {
+        const endpoint2 = `https://api.github.com/users/${username}`;
+        const res = await fetch(endpoint2);
+        const data = await res.json();
+        console.log(data);
+    }
+
+    displayUser('anandau').catch(err => console.log('you got an error -> ', err));
+
+    // we can get a lot of api from https://github.com/public-apis/public-apis
+</script>
