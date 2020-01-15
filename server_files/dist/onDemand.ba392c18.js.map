@@ -1,0 +1,1 @@
+{"version":3,"sources":["onDemand.js"],"names":["iNeedYou","console","log"],"mappings":";AAEC,aAFM,SAASA,IACZC,QAAQC,IAAI,sBACf,OAAA,eAAA,QAAA,aAAA,CAAA,OAAA,IAAA,QAAA,SAAA","file":"onDemand.ba392c18.js","sourceRoot":"../modules","sourcesContent":["export function iNeedYou() {\n    console.log('ok i will be there');\n}"]}

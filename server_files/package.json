@@ -12,5 +12,7 @@
   "dependencies": {
     "parcel-bundler": "^1.12.4"
   },
-  "browserslist": ["last 1 chrome versions"]
+  "browserslist": [
+    "last 1 chrome versions"
+  ]
 }
