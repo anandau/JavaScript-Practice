@@ -1,0 +1,8 @@
+1. create a new file in backend/src/db.js this is where we are going to connect our Prisma db.
+2. for doing that we are going to use Prisma-Binding. (search on google). -> this is just js binding for Prisma db.
+3. now lets create a yoga server.
+4. create a new file in backend/src/createServer.js
+5. after doing all the stuff in createServer.js go to src/index.js for kick start our app.
+
+
+

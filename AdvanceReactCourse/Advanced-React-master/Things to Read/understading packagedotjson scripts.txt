@@ -1,0 +1,22 @@
+=> for the Backend ->
+
+"scripts": {
+   1 -> "start": "nodemon -e js,graphql -x node src/index.js",
+   2 ->  "dev": "nodemon -e js,graphql -x node --inspect src/index.js",
+   3 ->  "test": "jest",
+   4 ->  "deploy": "prisma deploy --env-file variables.env"
+  }
+
+note:   nodemon -> we are using the "nodemon" what it does is it will monitor your js files for changes and if there ever if change it will kill the server and restart it by it self.
+        -e -> we are monitoring the .js files and .graphql
+        -x -> means what nodemon should run. and we are running node --inspect src/index.js
+        --inspect -> this flag allows us to use chrome dev tool to see our console result rather than dump into our terminal.
+
+1 ->
+
+2 -> command -> npm run dev -> thats how we start the actual server.
+
+
+=> for the FrontEnd ->
+
+npm run dev -> for running the app.

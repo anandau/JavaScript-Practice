@@ -1,0 +1,13 @@
+FOR FRONTEND->
+1. React.js
+2. Next.js -> for server side rendering, and routing and tooling.
+3. Apollo Client -> for Data Management, Performing GraphQL Mutation, Fetching GraphQL Query, Caching GraphQL Data, Managing Local State, Error and Loading UI State.
+4. styled-Component for writing the css.
+5. NProgress-> for showing user that something is going on the page.
+
+FOR BACKEND->
+1. GraphQL Yoga -> an Express GraphQL Server for -> Implementing Query and Mutation Resolvers, Custom Server Side Logic, Charging Credit Cards, Sending Email, Performing JWT Authentication, Checking Permission.
+2. Prisma -> A GraphQL Database Interface, Providers a set of GraphQL CRUD APIs for MySQL or Postgres DataBase, Schema Definition, Data Relationships, Queried Directly from our Yoga Server, Self-hosted or as-a-service.
+
+
+=> https://cloudinary.com/ -> for hosting,uploading our images.

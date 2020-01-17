@@ -1,0 +1,4 @@
+1. step to setup prisma.txt.
+2. how to use prisma.txt
+3. how to use GraphQL Yoga.txt
+4. how to set Apollo Client with React.txt

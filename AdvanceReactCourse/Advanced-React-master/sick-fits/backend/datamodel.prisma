@@ -1,0 +1,23 @@
+"""
+=> this file is used for creating things like fields, table etc.
+=> this is our schema for prisma. or the db that lives under the prisma
+=> meaning what we create here will go to prisma db.
+=> ! -> is required
+=> remember-> if you change something in datamodel then you have to have to re-deploy it with prisma in order to update the prisma db.
+=> command -> npm run deploy
+"""
+
+type User {
+  id: ID! @id
+  name: String!
+  email: String!
+}
+
+type Item {
+    id: ID! @id
+    title: String!
+    description: String!
+    image: String
+    largeImage: String
+    price: Int!
+}

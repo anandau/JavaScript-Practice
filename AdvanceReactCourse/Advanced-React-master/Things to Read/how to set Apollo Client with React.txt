@@ -1,0 +1,6 @@
+=> Apollo allows us to communicate react with backend.
+=> Apollo will do all data manager stuff as well as all other stuff
+=> like fetching of the data from the server side, pushing of the data, Mutation, caching etc.
+
+1. first open up frontend/lib/withData.js here we have defined our Apollo.
+2. now go to _app.js and do stuff.

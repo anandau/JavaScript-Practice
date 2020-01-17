@@ -1,0 +1,40 @@
+1. create a user.
+=> write this in datamodel.prisma
+=> this will create a user in Prisma Admin.
+type User {
+  id: ID! @id
+  name: String!
+  email: String!
+}
+
+2. for adding records in User.
+=> this will add a record in our User.
+mutation {
+  createUser(data: {
+    name: "Sharukh Khan"
+    email: "srk@gmail.com"
+  }) {
+    name
+    email
+  }
+}
+
+3. fetching data from User.
+query {
+  users {
+    id
+    email
+    name
+  }
+}
+
+4. using where clause in query.
+query {
+  users(where: {
+    name_contains: "Sharukh"
+  }) {
+    id
+    email
+    name
+  }
+}

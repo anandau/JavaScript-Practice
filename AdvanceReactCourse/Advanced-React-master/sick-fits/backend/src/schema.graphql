@@ -1,0 +1,31 @@
+# this file is public facing api this is where our react app will interfacing with.
+
+# the type Mutation will help us to mutate the data in our prisma db.
+# here we create our custom function to intreact with db.
+# syntax:
+# createItem(all the arument which we have given in our datamodel.prisma): return -> here we are returning all the items.
+# here when we retrun anything then we have to create that returning part here as well.
+# in this case it would be like this ->
+# type Item { id: ID!, title: String!, description: String!, image: String, largeImage: String, price: Int!}
+# so if we create Item here also then it is kind of repetive taks so what we is
+# remember if the argument and the return value is same then we can import it from the prisma.graphql file.
+# in our case the prisma.graphql has already create a type in prisma.graphql file so we just need to improt it from prisma.graphql.
+# for importing we go something like this.
+
+# import * from './generated/prisma.graphql'
+
+# this is how we import everything from prisma.graphql.
+# now below we are returning Item and we have not created Item type here also.
+# so what it will do is it will go prisma.graphql and get the Item from it.
+
+type Mutation {
+    createItem(title: String, description: String!, price: Int!, image: String, largeImage: String): Item!
+}
+
+# the query will return our all the items.
+type Query {
+    items: [Item]!
+}
+
+# we will write our mutation and query code mutation.js and query.js
+# after that run npm run dev if not running.

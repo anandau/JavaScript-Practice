@@ -1,0 +1,13 @@
+# endpoint: https://us1.prisma.sh/sick-fits-prisma/dev
+# first we will go to variable.env and paste our endpoint in PRISMA_ENDPOINT. and use it here
+endpoint: ${env:PRISMA_ENDPOINT}
+datamodel: datamodel.prisma
+# secret: : ${env:PRISMA_SECRET}
+# the secret will lock down your database so that the general public will not be able to write or deleting stuff.
+# when we hit the production then we will uncomment it.
+hooks:
+  post-deploy:
+    - graphql get-schema -p prisma
+# the hooks is used to create or modify our datamodel "see above".
+# in datamodel we have some query which will run.
+# go to src/generated/prisma.graphql

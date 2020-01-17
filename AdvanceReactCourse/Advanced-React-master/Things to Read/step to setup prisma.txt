@@ -1,0 +1,46 @@
+1. first go to https://www.prisma.io/ and signup yourself.
+2. go to terminal where you want to setup Prisma.
+3. install Prisma globally.
+4. command -> npm i -g prima
+5. command -> prisma login
+6. you will be directed to browser and click permission granted.
+7. go back to terminal.
+8. command -> prisma init.
+9. here you will see some of the options select accordingly.
+10. here i am using demo server.
+11. on next step select any of which has lowest latency.
+12. choose a name.
+13. choose "Dont Generate".
+14. open prisma.yml
+15. cut endpoint to variables.env.sample.
+16. change variables.env.sample to variables.env
+note: the variables.env will contain all sensitive information so never push this anywhere where public can see.
+17. in variables.env
+FRONTEND_URL="http://localhost:7777"
+PRISMA_ENDPOINT=" THE URL WHICH YOU COPY FROM prisma.yml"
+PRISMA_SECRET=" ANY TEXT "
+APP_SECRET="jwtsecret123"
+STRIPE_SECRET="sk_123youchanget his"
+PORT=4444
+18. in prisma.yml
+endpoint: ${env:PRISMA_ENDPOINT}
+datamodel: datamodel.prisma
+#secret: : ${env:PRISMA_SECRET}
+hooks:
+  post-deploy:
+    - graphql get-schema -p prisma
+19. now lets deploy our datamodel to prisma.io
+20. normally we use command -> prisma deploy. but in our case we are using the .env file so the command will be like this.
+21. command -> prisma deploy --env-file variables.env
+note: if you see error like this.
+ Your `cluster` property in the prisma.yml is missing the workspace slug.
+=> then go to prisma.io console
+=> go to setting -> and copy Slug value.
+=> paste after https://us1.prisma.sh/{slug value}/sick-fits-prisma/dev.
+22. now if you go to your prisma server you will be able to see your given name server.
+
+note: for every time we are typing this big command -> prisma deploy --env-file variables.env.
+so since i am Lazy so i have set this in our package.json in script.
+so the command will be now.
+command -> npm run deploy
+
