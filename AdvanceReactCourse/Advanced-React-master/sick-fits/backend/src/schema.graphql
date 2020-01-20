@@ -18,13 +18,22 @@
 # now below we are returning Item and we have not created Item type here also.
 # so what it will do is it will go prisma.graphql and get the Item from it.
 
+# update -> will update our items accordingly.
 type Mutation {
     createItem(title: String, description: String!, price: Int!, image: String, largeImage: String): Item!
+    updateItem(id: ID!, title: String, description: String, price: Int): Item!
+    deleteItem(id: ID!): Item
 }
 
 # the query will return our all the items.
+# in second query item we are asking for unique input and returing it.
+# the ItemWhereUniqueInput is coming from prisma.graphql.
+# The itemsConnection will return us an aggrigate data about the autual data itself and in our case we need to howmany items are available to us.
+
 type Query {
     items: [Item]!
+    item(where: ItemWhereUniqueInput!): Item
+    itemsConnection(where: ItemWhereInput): ItemConnection!
 }
 
 # we will write our mutation and query code mutation.js and query.js

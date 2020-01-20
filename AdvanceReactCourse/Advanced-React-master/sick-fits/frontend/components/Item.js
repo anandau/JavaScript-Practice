@@ -6,6 +6,7 @@ import PriceTag from './styles/PriceTag';
 import Link from 'next/link';
 // right now it is in us money format.
 import formalMoney from '../lib/formatMoney';
+import DeleteItem from "./DeleteItem";
 class Item extends Component {
     render() {
         const { item } = this.props;
@@ -34,7 +35,7 @@ class Item extends Component {
                         <a>Edit</a>
                     </Link>
                     <button>Add to Cart</button>
-                    <button>Delete</button>
+                    <DeleteItem id={item.id}>Delete this Item</DeleteItem>
                 </div>
             </ItemStyles>
         );

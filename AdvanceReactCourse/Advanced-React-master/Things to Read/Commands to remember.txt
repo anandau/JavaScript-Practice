@@ -1,3 +1,9 @@
+BackEnd =>
+
 1. npm run deploy => for deploy or update our prisma db when something changed in datamodel.prisma.
 2. npm run dev => for running GraphQL yoga where we query our data.
 3. prisma console => to open prisma console
+
+FrontEnd =>
+
+1. npm run dev -> for running the app.

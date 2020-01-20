@@ -29,8 +29,8 @@ const CREATE_ITEM_MUTATION = gql`
 
 class CreateItem extends Component {
     state = {
-        title: 'cool shoes',
-        description: 'i love this shoes',
+        title: 'Image ',
+        description: 'i love this Product.',
         image: 'dog.jpg',
         largeImage: 'large-dog.jpg',
         price: 100,
@@ -55,7 +55,7 @@ class CreateItem extends Component {
             method: 'POST',
             body: data
         });
-
+        // TODO: we can check here if our image is uploaded or not and can disable and enable accordingly.
         const file = await res.json();
         console.log(file);
         this.setState({

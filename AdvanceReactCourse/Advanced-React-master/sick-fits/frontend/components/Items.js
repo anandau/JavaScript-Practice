@@ -5,6 +5,7 @@ import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 import styled from 'styled-components';
 import Item from './Item';
+import Pagination from "./Pagination";
 const ALL_ITEMS_QUERY = gql`
     query ALL_ITEMS_QUERY {
         items {
@@ -34,6 +35,7 @@ class Items extends Component {
     render() {
         return (
             <Center>
+                <Pagination></Pagination>
                 <Query query={ALL_ITEMS_QUERY}>
                     {
                         /*
@@ -56,6 +58,7 @@ class Items extends Component {
                         }
                     }
                 </Query>
+                <Pagination></Pagination>
             </Center>
         );
     }
